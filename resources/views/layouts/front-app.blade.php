@@ -1,3 +1,4 @@
+<!-- https://dompet.dexignlab.com/xhtml/index.html -->
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -99,6 +100,22 @@
                             <span class="nav-text">Brands</span>
                         </a>
                     </li>
+                    @can('role')
+                    <li class="{{ request()->routeIs('roles.*') ? 'mm-active' : '' }}">
+                        <a class="ai-icon" href="{{ route('roles.index') }}" aria-expanded="false">
+                            <i class="fa-solid fa-gear fw-bold"></i>
+                            <span class="nav-text">Roles</span>
+                        </a>
+                    </li>
+                    @endcan
+                    @can('user')
+                    <li class="{{ request()->routeIs('users.*') ? 'mm-active' : '' }}">
+                        <a class="ai-icon" href="{{ route('users.index') }}" aria-expanded="false">
+                            <i class="fa-solid fa-user fw-bold"></i>
+                            <span class="nav-text">Users</span>
+                        </a>
+                    </li>
+                    @endcan
                 </ul>
                 <div class="copyright">
                     <p><strong>Admin Dashboard</strong> © {{ date('Y') }} All Rights Reserved</p>

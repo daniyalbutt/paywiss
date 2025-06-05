@@ -6,6 +6,8 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\BrandsController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,7 +47,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('show/response/{id}', [App\Http\Controllers\HomeController::class, 'showResponse'])->name('show.response');
     Route::get('payment/delete/{id}', [PaymentController::class, 'delete'])->name('payment.delete');
     Route::post('paid', [PaymentController::class, 'paid'])->name('payment.paid');
-
+    Route::resource('users', UserController::class);
+    Route::resource('roles', RoleController::class);
 });
 
 Auth::routes(['register' => false]);

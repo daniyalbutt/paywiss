@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "maatwebsite/excel": "^1.1",
+        "spatie/laravel-permission": "^6.19",
         "square/connect": "^3.20200528",
         "stripe/stripe-php": "^7.61"
     },
