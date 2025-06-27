@@ -50,6 +50,9 @@ class Payment extends Model
     public function getCard(){
         if($this->merchant == 0){
             return strtoupper(json_decode($this->return_response)->payment_method_details->card->brand) . ' **** **** ****' . json_decode($this->return_response)->payment_method_details->card->last4;
+        }else if($this->merchant == 4){
+            // Authorize
+            return ' **** **** **** ' .substr(json_decode($this->payment_data)->cc_number, -4);
         }else if($this->merchant == 3){
             return ' **** **** **** ' .substr(json_decode($this->payment_data)->cardnumber, -4);
         }
@@ -58,6 +61,8 @@ class Payment extends Model
     public function getCardBrand(){
         if($this->merchant == 0){
             return strtoupper(json_decode($this->return_response)->payment_method_details->card->brand);
+        }else if($this->merchant == 4){
+            return strtoupper(json_decode($this->authorize_response)->card_brand);
         }else if($this->merchant == 3){
             return 'FETCH';
         }

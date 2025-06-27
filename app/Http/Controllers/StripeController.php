@@ -257,8 +257,6 @@ class StripeController extends Controller
     }
     
     public function paymentAuthorize(Request $request){
-        $this->chargeCreditCard("2.23");
-        die();
         $input_request = $request->input();
         $payments_id = $request->id;
         $payments = Payment::find($payments_id);
@@ -324,17 +322,18 @@ class StripeController extends Controller
             $request->setTransactionRequest($transactionRequestType);
     
             $controller = new AnetController\CreateTransactionController($request);
-            $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::PRODUCTION);
-            // $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
+            // $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::PRODUCTION);
+            $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
             $update_payments = Payment::find($payments->id);
             $update_payments->payment_data = $input_request;
-            dd($response);
             if ($response != null) {
                 $tresponse = $response->getTransactionResponse();
                 if ($tresponse != null && $tresponse->getResponseCode() == "1") {
                     $update_payments->status = 2;
                     $update_payments->return_response = 'Payment Successfully - ' . $tresponse->getMessages()[0]->getDescription();
-                    $update_payments->authorize_response = json_encode($tresponse);
+                    $responseArray = json_decode(json_encode($tresponse), true);
+                    $responseArray['card_brand'] = $tresponse->getAccountType();
+                    $update_payments->authorize_response = $responseArray;
                     $update_payments->save();
                     return redirect()->route('success.payment', ['id' => $payments->id]);
                 } else {
