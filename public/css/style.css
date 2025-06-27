@@ -64,3 +64,13 @@ ul.scrapper-search li:last-child {
 ul.scrapper-search li:first-child {
     width: 65%;
 }
+
+ul.pagination {
+    overflow-y: scroll;
+}
+
+@media (max-width: 767.98px) {
+    img.logo-text{
+        display: none;
+    }
+}

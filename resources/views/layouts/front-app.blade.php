@@ -43,7 +43,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('payment.create') }}" class="btn btn-primary d-sm-inline-block d-none">Create Invoice</a>
+                                <a href="{{ route('payment.create') }}" class="btn btn-primary">Create Invoice</a>
                             </li>
                         </ul>
                     </div>
