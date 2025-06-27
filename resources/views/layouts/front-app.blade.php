@@ -100,6 +100,12 @@
                             <span class="nav-text">Brands</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="ai-icon" href="{{ route('scrapped.index') }}" aria-expanded="false">
+                            <i class="flaticon-072-printer"></i>
+                            <span class="nav-text">Scrapped Leads</span>
+                        </a>
+                    </li>
                     @can('role')
                     <li class="{{ request()->routeIs('roles.*') ? 'mm-active' : '' }}">
                         <a class="ai-icon" href="{{ route('roles.index') }}" aria-expanded="false">

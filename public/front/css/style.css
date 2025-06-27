@@ -623,3 +623,84 @@ label.checkout-box-wrapper input {
 .modal-footer.footer-agree label {
     margin-left: 25px;
 }
+
+
+
+@media (max-width: 767.98px) {
+    .payment-left {
+        display: block !important;
+        text-align: center;
+        padding: 0 !important;
+        margin: 30px 0px;
+    }
+    .payment-left-inner h2 {
+        font-size: 30px !important;
+    }
+    .payment-left-inner h1 {
+        font-size: 20px !important;
+    }
+    
+    .payment-left-inner img {
+        width: 150px;
+    }
+    .col-md-4.pr-0 {
+        padding-right: 15px !important;
+    }
+    .col-md-4.pr-0.pl-0 {
+        padding-left: 15px !important;
+    }
+    span#basic-addon2 img {
+        display: none;
+    }
+    .col-md-4.pl-0 {
+        padding-left: 15px !important;
+    }
+    input#exp_year {
+        margin-bottom: 0;
+    }
+    input#expiry {
+        border-radius: 0px !important;
+    }
+    .col-md-3.pl-0.pr-0 {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    input#city {
+        margin: 0;
+    }
+    .col-md-3.pl-0 {
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+    }
+    
+    input#zip {
+        margin: 0;
+        border-radius: 0px !important;
+    }
+    
+    .col-md-4.pl-0 {
+        padding-right: 15px !important;
+    }
+    
+    .col-md-6.pr-0 {
+        padding-right: 15px !important;
+    }
+    
+    .col-md-8.pr-0 {
+        padding-right: 15px !important;
+    }
+    
+    input#address {
+        border-radius: 0px !important;
+    }
+    
+    select#state {
+        border-bottom-left-radius: 15px !important;
+    }
+    
+    .payment-right {
+        padding: 20px 30px !important;
+    }
+}
