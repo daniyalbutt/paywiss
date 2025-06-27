@@ -22,3 +22,45 @@ ul.role-wrapper {
 ul.role-wrapper li {
     flex: 0 0 23%;
 }
+
+.menu-toggle .logo-text{
+    display:none;
+}
+
+.scrapped-box ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.scrapped-box {
+    border-radius: 11px;
+    box-shadow: 0 5px 5px 0 rgba(82,63,105,.05);
+    border: 1px solid #e5e5e5;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.scrapped-box ul li {
+    text-align: right;
+    color: black;
+}
+
+.scrapped-box p {
+    text-align: center;
+    padding: 4px;
+    margin-top: 6px;
+}
+
+ul.scrapper-search {
+    display: flex;
+    justify-content: space-between;
+}
+
+ul.scrapper-search li:last-child {
+    display: flex;
+    gap: 25px;
+}
+
+ul.scrapper-search li:first-child {
+    width: 65%;
+}
