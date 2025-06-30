@@ -11,7 +11,7 @@ class Client extends Model
     protected $fillable = ['name', 'email', 'phone', 'brand_name'];
     
     public function get_total_amount(){
-        return $this->hasMany(Payment::class, 'client_id', 'id')->where('status', 2)->sum('price');
+        return $this->hasMany(Payment::class, 'client_id', 'id')->where('status', 2)->where('show_status', 0)->sum('price');
     }
 
     public function brand(){

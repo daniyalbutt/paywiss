@@ -13,5 +13,29 @@
 </head>
 <body class="vh-100">
     @yield('content')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.getElementById('password');
+            const showPassIcons = document.querySelector('.show-pass');
+            
+            showPassIcons.addEventListener('click', function() {
+                // Toggle the password input type
+                const isPassword = passwordInput.type === 'password';
+                passwordInput.type = isPassword ? 'text' : 'password';
+                
+                // Toggle the eye icons visibility
+                const eyeSlash = this.querySelector('.fa-eye-slash');
+                const eye = this.querySelector('.fa-eye');
+                
+                if (isPassword) {
+                    eyeSlash.style.display = 'none';
+                    eye.style.display = 'inline-block';
+                } else {
+                    eyeSlash.style.display = 'inline-block';
+                    eye.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

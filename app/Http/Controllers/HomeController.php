@@ -31,15 +31,18 @@ class HomeController extends Controller
         $month_paid = DB::table('payments')
             ->whereRaw('MONTH(updated_at) = ?',[date('m')])
             ->where('status', 2)
+            ->where('show_status', 0)
             ->sum('price');
-        $last = DB::table('payments')->where('status', 2)->orderBy('updated_at', 'desc')->first();
+        $last = DB::table('payments')->where('show_status', 0)->where('status', 2)->orderBy('updated_at', 'desc')->first();
         $total_declined = DB::table('payments')
             ->whereRaw('MONTH(updated_at) = ?',[date('m')])
             ->where('status', 1)
+            ->where('show_status', 0)
             ->count();
         $total_completed = DB::table('payments')
             ->whereRaw('MONTH(updated_at) = ?',[date('m')])
             ->where('status', 2)
+            ->where('show_status', 0)
             ->count();
         $last_payment = Payment::where('show_status', 0)->where('status', 2)->orderBy('id', 'desc')->first();
 
@@ -47,6 +50,7 @@ class HomeController extends Controller
         ->select( DB::raw('count(payments.status) as count, payments.status'))
         ->groupBy('payments.status')
         ->whereRaw('MONTH(updated_at) = ?',[date('m')])
+        ->where('show_status', 0)
         ->get();
 
         $completed = 0;
@@ -92,6 +96,7 @@ class HomeController extends Controller
             ->where('created_at', '>', Carbon::now()->startOfWeek())
             ->where('created_at', '<', Carbon::now()->endOfWeek())
             ->where('status', 2)
+            ->where('show_status', 0)
             ->groupBy('updated_at')
             ->orderBy('updated_at', 'asc')
             ->get();
