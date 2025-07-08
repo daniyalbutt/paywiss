@@ -52,12 +52,10 @@
 							<thead>
 								<tr>
 									<th><strong>CUSTOMER</strong></th>
-									<th><strong>PACKAGE</strong></th>
-									<th><strong>PRICE</strong></th>
+									<th><strong>PACKAGE / PRICE</strong></th>
 									<th><strong>BRAND / MERCHANT</strong></th>
 									<th><strong>STATUS</strong></th>
 									<th><strong>CREATED AT</strong></th>
-									<th><strong>UPDATED AT</strong></th>
 									<th class="text-end"><strong>Action</strong></th>
 								</tr>
 							</thead>
@@ -66,16 +64,14 @@
 								<tr>
 									<td>
 										<div class="d-flex align-items-center">
-											<img src="{{ asset('images/dummy-user.png')}}" class="rounded-lg me-2" width="24" alt="">
 											<span class="w-space-no">{{ $value->client->name }} <br> {{ $value->client->email }}</span>
 										</div>
 									</td>
-									<td>{{ $value->package }}</td>
-									<td>${{ $value->price }}</td>
+									<td>{{ $value->package }}<br>${{ $value->price }}</td>
 									<td><span class="badge light badge-info">{{ $value->client->brand->name }}</span> <br> <span class="badge light badge-secondary mt-1">{{ $value->merchants != null ? $value->merchants->getMerchant() : '' }}</span></td>
 									<td><span class="badge light {{ $value->get_badge_status() }}">{{ $value->get_status() }}</span></td>
 									<td>{{ $value->created_at->format('d M, Y g:i A') }}</td>
-									<td>{{ $value->updated_at->format('d M, Y g:i A') }}</td>
+									<!-- <td>{{ $value->updated_at->format('d M, Y g:i A') }}</td> -->
 									<td class="text-end">
 										<span class="badge badge-primary" onclick="withJquery('{{ route('pay', [$value->unique_id]) }}')" style="cursor: pointer;">COPY LINK</span><br>
 										<div class="d-flex justify-content-end mt-2">
