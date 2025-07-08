@@ -48,7 +48,7 @@ class Payment extends Model
     }
     
     public function getCard(){
-        if($this->merchants != null)
+        if($this->merchants != null){
             $merchant = $this->merchants->merchant;
             if($merchant == 0){
                 return strtoupper(json_decode($this->return_response)->payment_method_details->card->brand) . ' **** **** ****' . json_decode($this->return_response)->payment_method_details->card->last4;
@@ -64,7 +64,7 @@ class Payment extends Model
     }
     
     public function getCardBrand(){
-        if($this->merchants != null)
+        if($this->merchants != null){
             $merchant = $this->merchants->merchant;
             if($merchant == 0){
                 return strtoupper(json_decode($this->return_response)->payment_method_details->card->brand);
