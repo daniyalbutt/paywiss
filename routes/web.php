@@ -6,6 +6,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\BrandsController;
+use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\ScrappedController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
@@ -45,6 +46,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('clients', ClientController::class);
     Route::resource('payment', PaymentController::class);
     Route::resource('brand', BrandsController::class);
+    Route::resource('merchant', MerchantController::class);
     Route::get('show/response/{id}', [App\Http\Controllers\HomeController::class, 'showResponse'])->name('show.response');
     Route::get('payment/delete/{id}', [PaymentController::class, 'delete'])->name('payment.delete');
     Route::post('paid', [PaymentController::class, 'paid'])->name('payment.paid');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment;
+use App\Models\Merchant;
 use App\Models\Client;
 use App\Models\Brands;
 use Illuminate\Http\Request;
@@ -49,7 +50,8 @@ class PaymentController extends Controller
     public function create()
     {
         $brands = Brands::where('status', 0)->get();
-        return view('payment.create', compact('brands'));
+        $merhant = Merchant::where('status', 0)->get();
+        return view('payment.create', compact('brands', 'merhant'));
     }
 
     /**

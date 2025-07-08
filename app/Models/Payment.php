@@ -78,4 +78,8 @@ class Payment extends Model
         }
     }
 
+    public function merchants(){
+        return $this->hasOne(Merchant::class, 'id', 'merchant');
+    }
+
 }

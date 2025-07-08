@@ -72,7 +72,7 @@
 									</td>
 									<td>{{ $value->package }}</td>
 									<td>${{ $value->price }}</td>
-									<td><span class="badge light badge-info">{{ $value->client->brand->name }}</span> <br> <span class="badge light badge-secondary mt-1">{{ $value->getMerchant() }}</span></td>
+									<td><span class="badge light badge-info">{{ $value->client->brand->name }}</span> <br> <span class="badge light badge-secondary mt-1">{{ $value->merchants != null ? $value->merchants->getMerchant() : '' }}</span></td>
 									<td><span class="badge light {{ $value->get_badge_status() }}">{{ $value->get_status() }}</span></td>
 									<td>{{ $value->created_at->format('d M, Y g:i A') }}</td>
 									<td>{{ $value->updated_at->format('d M, Y g:i A') }}</td>

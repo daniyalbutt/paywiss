@@ -368,8 +368,6 @@
             this.selectionEnd = cursor;
         });
         
-        // let stripe = Stripe('{{ $data->merchant == 0 ? env('STRIPE_KEY') : env('STRIPE_KEY_UK') }}');
-        
         var form = document.getElementById('card-form');
 
         $('#stripe-submit').click(function(e) {
@@ -377,7 +375,7 @@
             $('#stripe-submit').hide();
             $('#loader').show();
             
-            Stripe.setPublishableKey('{{ $data->merchant == 0 ? env('STRIPE_KEY') : env('STRIPE_KEY_UK') }}');
+            Stripe.setPublishableKey('{{ $data->merchants->public_key }}');
             Stripe.createToken({
                 name: $('#cardname').val(),
                 number: $('#cardnumber').val(),

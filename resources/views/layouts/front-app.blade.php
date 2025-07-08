@@ -106,6 +106,12 @@
                             <span class="nav-text">Scrapped Leads</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="ai-icon" href="{{ route('merchant.index') }}" aria-expanded="false">
+                            <i class="flaticon-052-inside"></i>
+                            <span class="nav-text">Merchants</span>
+                        </a>
+                    </li>
                     @can('role')
                     <li class="{{ request()->routeIs('roles.*') ? 'mm-active' : '' }}">
                         <a class="ai-icon" href="{{ route('roles.index') }}" aria-expanded="false">

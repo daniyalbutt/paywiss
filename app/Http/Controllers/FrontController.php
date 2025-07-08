@@ -34,11 +34,12 @@ class FrontController extends Controller
         if($data->status == 2){
             return redirect()->route('success.payment', ['id' => $data->id]);
         }
-        if(($data->merchant == 0) || ($data->merchant == 2)){
+        $merchant_type = $data->merchants->merchant;
+        if($merchant_type == 0){
             return view('stripe', compact('data'));
-        }else if($data->merchant == 3){
+        }else if($merchant_type == 3){
             return view('payment', compact('data'));
-        }else if($data->merchant == 4){
+        }else if($merchant_type == 4){
             return view('authorize', compact('data'));
         }else{
             return view('square', compact('data'));
