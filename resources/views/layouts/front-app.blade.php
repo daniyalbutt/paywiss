@@ -17,8 +17,8 @@
     <div id="main-wrapper">
         <div class="nav-header">
             <a href="{{ route('home') }}" class="brand-logo">
-                <img src="{{ asset('images/logo-icon.png') }}" alt="Logo" style="width: 60px;">
-                <img src="{{ asset('images/logo-text.png') }}" alt="Logo" class="logo-text" style="width: 140px;margin-top: 40px;">
+                <img src="{{ asset('images/logo-icon.png') }}" alt="Logo" style="width: 50px;">
+                <img src="{{ asset('images/logo-text.png') }}" alt="Logo" class="logo-text" style="width: 150px;margin-top: 0px;">
             </a>
             <div class="nav-control">
                 <div class="hamburger">
