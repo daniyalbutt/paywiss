@@ -43,7 +43,9 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                @can('create payment')
                                 <a href="{{ route('payment.create') }}" class="btn btn-primary">Create Invoice</a>
+                                @endcan
                             </li>
                         </ul>
                     </div>
@@ -88,12 +90,14 @@
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
+                    @can('payment')
                     <li>
                         <a class="ai-icon" href="{{ route('payment.index') }}" aria-expanded="false">
                             <i class="flaticon-072-printer"></i>
                             <span class="nav-text">Payments</span>
                         </a>
                     </li>
+                    @endcan
                     @can('brand')
                     <li>
                         <a class="ai-icon" href="{{ route('brand.index') }}" aria-expanded="false">

@@ -15,6 +15,13 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct(){
+        $this->middleware('permission:payment|create payment|edit payment|delete payment', ['only' => ['index','show']]);
+        $this->middleware('permission:create payment', ['only' => ['create','store']]);
+        $this->middleware('permission:edit payment', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete payment', ['only' => ['destroy']]);
+    }
+
     public function index(Request $request){
         $data = Payment::where('show_status', 0);
         if($request->status != null){

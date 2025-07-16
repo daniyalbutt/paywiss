@@ -78,7 +78,9 @@
 											@if(($value->status == 2) || ($value->status == 1))
 											<a href="{{ route('show.response', $value->id) }}" class="btn btn-info shadow btn-xs sharp me-1"><i class="fas fa-eye"></i></a>
 											@endif
+											@can('delete payment')
 											<a onclick="return confirm('Are you sure?')"  href="{{ route('payment.delete', ['id' => $value->id]) }}" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+											@endcan
 										</div>
 									</td>
 								</tr>

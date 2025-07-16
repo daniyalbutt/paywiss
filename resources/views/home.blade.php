@@ -3,6 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
+        @can('payment')
         <div class="col-xl-9 col-xxl-9">
             <div class="row">
                 <div class="col-xl-12">
@@ -182,6 +183,7 @@
                 </div>
             </div>
         </div>
+        @endcan
     </div>
 </div>
 @endsection
