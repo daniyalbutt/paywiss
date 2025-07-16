@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
 
 class BrandsSeeder extends Seeder
 {
@@ -13,6 +14,11 @@ class BrandsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $roles = ['brand','create brand', 'edit brand', 'delete brand'];
+        foreach ($roles as $value) {
+            Permission::create([
+                'name' => $value
+            ]);
+        }
     }
 }

@@ -14,6 +14,13 @@ class BrandsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct(){
+        $this->middleware('permission:brand|create brand|edit brand|delete brand', ['only' => ['index','show']]);
+        $this->middleware('permission:create brand', ['only' => ['create','store']]);
+        $this->middleware('permission:edit brand', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete brand', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $data = Brands::orderBy('id', 'desc')->get();

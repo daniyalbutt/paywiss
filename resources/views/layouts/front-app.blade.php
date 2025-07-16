@@ -94,12 +94,14 @@
                             <span class="nav-text">Payments</span>
                         </a>
                     </li>
+                    @can('brand')
                     <li>
                         <a class="ai-icon" href="{{ route('brand.index') }}" aria-expanded="false">
                             <i class="flaticon-040-graph"></i>
                             <span class="nav-text">Brands</span>
                         </a>
                     </li>
+                    @endcan
                     @can('scrapped')
                     <li>
                         <a class="ai-icon" href="{{ route('scrapped.index') }}" aria-expanded="false">

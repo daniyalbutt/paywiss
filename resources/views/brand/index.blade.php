@@ -10,9 +10,11 @@
 			</ol>
 		</div>
 		<div class="col-md-4">
+			@can('create brand')
 			<div class="text-end">
 				<a href="{{ route('brand.create') }}" class="btn btn-primary btn-xs">Create Brand</a>
 			</div>
+			@endcan
 		</div>
 	</div>
 	<div class="row page-titles p-0 pt-3 pb-3">
@@ -68,12 +70,16 @@
 									<td>{{ $value->created_at->format('d M, Y g:i A') }}</td>
 									<td class="text-end">
 										<div class="d-flex justify-content-end mt-2">
+											@can('edit brand')
 											<a href="{{ route('brand.edit', $value->id) }}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+											@endcan
+											@can('delete brand')
 											<form action="{{ route('brand.destroy', $value->id) }}" method="post">
 												@csrf
 												@method('DELETE')
 												<button type="submit" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></button>
 											</form>
+											@endcan
 										</div>
 									</td>
 								</tr>
