@@ -58,7 +58,11 @@
 					<div class="row">
     					@foreach($data as $key => $value)
     					<div class="col-md-4">
-    					    <div class="scrapped-box mb-4" id="{{ $value->serial }}" onclick="openStatus(this, {{ $value->serial }}, '{{ json_decode($value->data)->Summary->Mark }}')">
+    					    <div class="scrapped-box mb-4" id="{{ $value->serial }}" 
+							@can('edit scrapped')
+							onclick="openStatus(this, {{ $value->serial }}, '{{ json_decode($value->data)->Summary->Mark }}')"
+							@endcan
+							>
         					    <ul>
         					        <li><strong>Wordmark</strong></li>
         					        <li>{{ json_decode($value->data)->Summary->Mark }}</li>

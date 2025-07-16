@@ -13,6 +13,13 @@ class ScrappedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct(){
+        $this->middleware('permission:scrapped|create scrapped|edit scrapped|delete scrapped', ['only' => ['index','show']]);
+        $this->middleware('permission:create scrapped', ['only' => ['create','store']]);
+        $this->middleware('permission:edit scrapped', ['only' => ['edit','update', 'updateStatus']]);
+        $this->middleware('permission:delete scrapped', ['only' => ['destroy']]);
+    }
+
     public function index(Request $request)
     {
         $data = new Scrapped();

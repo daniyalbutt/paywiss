@@ -100,12 +100,14 @@
                             <span class="nav-text">Brands</span>
                         </a>
                     </li>
+                    @can('scrapped')
                     <li>
                         <a class="ai-icon" href="{{ route('scrapped.index') }}" aria-expanded="false">
                             <i class="flaticon-072-printer"></i>
                             <span class="nav-text">Scrapped Leads</span>
                         </a>
                     </li>
+                    @endcan
                     @can('merchant')
                     <li>
                         <a class="ai-icon" href="{{ route('merchant.index') }}" aria-expanded="false">
