@@ -52,12 +52,7 @@
 							</div>
 							<!-- /.box-body -->
 							<div class="box-footer">
-								<button type="button" class="btn btn-warning me-1">
-								<i class="ti-trash"></i> Cancel
-								</button>
-								<button type="submit" class="btn btn-primary">
-								<i class="ti-save-alt"></i> Update
-								</button>
+								<button type="submit" class="btn btn-primary">Update</button>
 							</div>
 						</form>
 					</div>

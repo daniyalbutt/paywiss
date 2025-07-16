@@ -14,6 +14,13 @@ class MerchantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct(){
+        $this->middleware('permission:merchant|create merchant|edit merchant|delete merchant', ['only' => ['index','show']]);
+        $this->middleware('permission:create merchant', ['only' => ['create','store']]);
+        $this->middleware('permission:edit merchant', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete merchant', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $data = Merchant::orderBy('id', 'desc')->get();

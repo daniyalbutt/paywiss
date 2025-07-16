@@ -18,7 +18,7 @@
         <div class="nav-header">
             <a href="{{ route('home') }}" class="brand-logo">
                 <img src="{{ asset('images/logo-icon.png') }}" alt="Logo" style="width: 50px;">
-                <img src="{{ asset('images/logo-text.png') }}" alt="Logo" class="logo-text" style="width: 150px;margin-top: 0px;">
+                <img src="{{ asset('images/logo-text.png') }}" alt="Logo" class="logo-text" style="width: 130px;margin-top: 0px;">
             </a>
             <div class="nav-control">
                 <div class="hamburger">
@@ -106,12 +106,14 @@
                             <span class="nav-text">Scrapped Leads</span>
                         </a>
                     </li>
+                    @can('merchant')
                     <li>
                         <a class="ai-icon" href="{{ route('merchant.index') }}" aria-expanded="false">
                             <i class="flaticon-052-inside"></i>
                             <span class="nav-text">Merchants</span>
                         </a>
                     </li>
+                    @endcan
                     @can('role')
                     <li class="{{ request()->routeIs('roles.*') ? 'mm-active' : '' }}">
                         <a class="ai-icon" href="{{ route('roles.index') }}" aria-expanded="false">
