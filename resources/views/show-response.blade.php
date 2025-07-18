@@ -40,11 +40,15 @@
                     $paymentDataArray = json_decode(json_encode($payment_data), true);
                     $authorizeDataArray = json_decode(json_encode($authorize_data), true);
                     @endphp
+                    @if(is_array($paymentDataArray))
                     {!! displayData($paymentDataArray) !!}
+                    @endif
                     @if($data->status == 2)
                     @if($return_data != null)
+                    @if(is_array($paymentArray))
                         <hr>
                         {!! displayData($paymentArray) !!}
+                    @endif
                     @endif
                     @if($authorize_data != null)
                         <hr>
@@ -52,11 +56,9 @@
                     @endif
                     @endif
 
-                    @if($data->status == 1)
                     @if($data->return_response != null)
                     <hr>
                     <strong>{{ $data->return_response }}</strong>
-                    @endif
                     @endif
                 </div>
             </div>

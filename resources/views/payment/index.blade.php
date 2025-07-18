@@ -69,7 +69,15 @@
 									</td>
 									<td>{{ $value->package }}<br>${{ $value->price }}</td>
 									<td><span class="badge light badge-info">{{ $value->client->brand->name }}</span> <br> <span class="badge light badge-secondary mt-1">{{ $value->merchants != null ? $value->merchants->name : '' }} - {{ $value->merchants != null ? $value->merchants->getMerchant() : '' }}</span></td>
-									<td><span class="badge light {{ $value->get_badge_status() }}">{{ $value->get_status() }}</span></td>
+									<td>
+										<span class="badge light {{ $value->get_badge_status() }}">{{ $value->get_status() }}</span>
+										@can('mark as paid')
+										@if($value->status == 0)
+										<br>
+										<a href="javascript:;" data-id="{{ $value->id }}" class="btn btn-danger btn-xs p-2 pt-1 pb-1 mt-1 text-uppercase mark-as-paid">Mark as Paid</a>
+										@endif
+										@endcan
+									</td>
 									<td>{{ $value->created_at->format('d M, Y g:i A') }}</td>
 									<!-- <td>{{ $value->updated_at->format('d M, Y g:i A') }}</td> -->
 									<td class="text-end">
@@ -94,10 +102,35 @@
 		</div>
 	</div>
 </div>
+@can('mark as paid')
+<!-- Modal -->
+<div class="modal fade" id="markAddPaidModal" tabindex="-1" aria-labelledby="markAddPaidLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+		<form action="{{ route('payment.paid') }}" class="w-100 mark-as-paid-form">
+			<input type="hidden" name="payment_id" class="payment_id">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="markAddPaidLabel"></h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body text-center">
+					<h2>Are you sure you want to <br>pay this invoice?</h2>
+					<textarea placeholder="Enter source of payment" name="source" id="source" class="form-control mt-3 source"></textarea>
+				</div>
+				<div class="modal-footer justify-content-center">
+					<button type="button" class="btn btn-secondary btn-xs" data-bs-dismiss="modal">NO</button>
+					<button type="submit" class="btn btn-primary btn-xs">YES</button>
+				</div>
+			</div>
+		</form>
+    </div>
+</div>
+@endcan
 @endsection
 
 @push('scripts')
 <script>
+	var a;
     function withJquery(link){
 	    var temp = $("<input>");
         $("body").append(temp);
@@ -106,5 +139,40 @@
         temp.remove();
         console.timeEnd('time1');
     }
+</script>
+<script>
+	$(document).ready(function () {
+    	$(".mark-as-paid").on("click", function () {
+			a = $(this);
+			var id = $(this).data('id');
+			$('.mark-as-paid-form').find('.payment_id').val(id);
+      		var modal = new bootstrap.Modal(document.getElementById('markAddPaidModal'));
+      		modal.show();
+    	});
+
+		$('.mark-as-paid-form').submit(function(e){
+			e.preventDefault();
+			var source = $(this).find('.source').val();
+			var id = $(this).find('.payment_id').val();
+			$.ajax({
+				url: $(this).attr('action'),
+        		method: "POST",
+				data: {
+					source: source,
+					id: id,
+					_token: jQuery('meta[name="csrf-token"]').attr('content')
+				},
+				success: function(response) {
+					$(a).parent().find('span').removeClass().addClass('badge light btn-success');
+					$(a).remove();
+					var modal = bootstrap.Modal.getInstance(document.getElementById('markAddPaidModal'));
+					if (modal) modal.hide();
+				},
+				error: function(xhr) {
+					console.log(xhr);
+				}
+			});
+		});
+  	});
 </script>
 @endpush

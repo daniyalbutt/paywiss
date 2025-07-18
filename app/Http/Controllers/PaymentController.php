@@ -21,6 +21,7 @@ class PaymentController extends Controller
         $this->middleware('permission:create payment', ['only' => ['create','store']]);
         $this->middleware('permission:edit payment', ['only' => ['edit','update']]);
         $this->middleware('permission:delete payment', ['only' => ['destroy']]);
+        $this->middleware('permission:mark as paid', ['only' => ['paid']]);
     }
 
     public function index(Request $request){
@@ -155,10 +156,11 @@ class PaymentController extends Controller
     }
     
     public function paid(Request $request){
-        $payment = Payment::find($request->payment_id);
+        $id = $request->id;
+        $payment = Payment::find($id);
         $payment->status = 2;
         $payment->return_response = $request->source;
         $payment->save();
-        return redirect()->back()->with('success', 'Invoice # ' . $payment->id .' Paid Successfully');   
+        return response()->json(['status' => true, 'message' => 'Invoice # ' . $payment->id .' Paid Successfully']);
     }
 }
