@@ -51,6 +51,13 @@
                         {!! displayData($authorizeDataArray) !!}
                     @endif
                     @endif
+
+                    @if($data->status == 1)
+                    @if($data->return_response != null)
+                    <hr>
+                    <strong>{{ $data->return_response }}</strong>
+                    @endif
+                    @endif
                 </div>
             </div>
         </div>
