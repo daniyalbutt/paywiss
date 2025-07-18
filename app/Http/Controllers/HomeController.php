@@ -28,8 +28,20 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        $month = date('m');
+        $year = date('Y');
+        if($request->month != null){
+            $month = $request->month;
+            $invoice_month = date('F', mktime(0, 0, 0, $month, 10));
+        }
+        if($request->year != null){
+            $year = $request->year;
+            $invoice_year = $year;
+        }
+
         $month_paid = DB::table('payments')
-            ->whereRaw('MONTH(updated_at) = ?',[date('m')])
+            ->whereRaw('MONTH(updated_at) = ?',[$month])
+            ->whereRaw('YEAR(updated_at) = ?',[$year])
             ->where('status', 2)
             ->where('show_status', 0)
             ->sum('price');
@@ -89,8 +101,6 @@ class HomeController extends Controller
         foreach($completed_data as $key => $value){
             array_push($completed_array, $value->price);
         }
-        $month = date('m');
-        $year = date('Y');
         $graph_data = DB::table('payments')
             ->select(DB::raw('SUM(price) as price'), DB::raw('DATE_FORMAT(updated_at,"%a") as invoice_date'))
             ->where('created_at', '>', Carbon::now()->startOfWeek())
@@ -101,7 +111,7 @@ class HomeController extends Controller
             ->orderBy('updated_at', 'asc')
             ->get();
         
-        return view('home', compact('data', 'month_paid', 'last', 'total_declined', 'total_completed', 'last_payment', 'completed_percentage', 'pending_percentage', 'declined_percentage', 'customer', 'completed_array', 'graph_data'));
+        return view('home', compact('data', 'month_paid', 'last', 'total_declined', 'total_completed', 'last_payment', 'completed_percentage', 'pending_percentage', 'declined_percentage', 'customer', 'completed_array', 'graph_data', 'month', 'year'));
     }
 
     public function showResponse($id){
