@@ -124,9 +124,10 @@ class UserController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
+    public function destroy($id)
     {
-        //
+        User::find($id)->delete();
+        return redirect()->back()->with('success', 'User Created Successfully');
     }
     
     public function logoBrief($id){

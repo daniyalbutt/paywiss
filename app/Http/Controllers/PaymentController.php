@@ -7,6 +7,7 @@ use App\Models\Merchant;
 use App\Models\Client;
 use App\Models\Brands;
 use Illuminate\Http\Request;
+use Auth;
 
 class PaymentController extends Controller
 {
@@ -95,6 +96,7 @@ class PaymentController extends Controller
         $payment->client_id = $client_id;
         $payment->unique_id = bin2hex(random_bytes(14));
         $payment->merchant = $request->merchant;
+        $payment->user_id = Auth::user()->id;
         $payment->save();
         return redirect()->route('payment.show', [$payment->id]);
     }
